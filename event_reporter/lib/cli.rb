@@ -1,11 +1,11 @@
 require 'messages'
 require 'loader'
 require 'helper'
-require 'queue'
+require 'results_queue'
 require 'finder'
 # require 'pry'
 class CLI
-  attr_reader :instream, :outstream, :message, :input, :remaining_input, :helper, :loader
+  attr_reader :instream, :outstream, :message, :input, :remaining_input, :helper, :loader, :finder, :results
   attr_accessor :command, :entries
 
   def initialize(instream, outstream)
@@ -19,6 +19,7 @@ class CLI
     @loader          = Loader.new(instream, outstream)
     @entries         = loader.entries
     @finder          = Finder.new(@entries)
+    @results_queue   = ResultsQueue.new(instream, outstream)
   end
 
   def call
@@ -32,12 +33,17 @@ class CLI
   end
 
   def process_initial_commands
-    case
-    when load?            then @loader.process_load(@remaining_input)
-    when help?            then @helper.process_help(@remaining_input)
-    when queue?           then process_queue
-    when find?            then @finder.process_find(@remaining_input)
-    when exit?            then outstream.puts message.exit
+
+    if load?
+      @loader.process_load(@remaining_input)
+    elsif help?
+      @helper.process_help(@remaining_input)
+    elsif find?
+      @finder.process_find(@remaining_input)
+    elsif queue?
+      @results_queue.process_queue(@remaining_input, finder.results)
+    elsif exit?
+      outstream.puts message.exit
     else  outstream.puts message.invalid_message
     end
   end

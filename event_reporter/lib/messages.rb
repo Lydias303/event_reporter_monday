@@ -58,4 +58,8 @@ class Messages
   def help_search
     "SEARCH"
   end
+
+  def empty_queue
+    "Sorry your queue is empty please try your search again by using 'find by'"
+  end
 end

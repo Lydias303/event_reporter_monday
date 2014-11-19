@@ -15,7 +15,7 @@ def initialize(instream, outstream)
 end
 
  def load_file
-   csv = CSV.open("./data/#{file_name}", headers: true, header_converters: :symbol)
+   csv = CSV.open("./data/event_attendees.csv", headers: true, header_converters: :symbol)
    csv.each do |row|
      @entries << Entry.new(row)
    end

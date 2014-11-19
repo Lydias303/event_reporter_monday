@@ -23,9 +23,5 @@ class Helper
     when remaining_input == ["queue","save"]   then outstream.puts messages.help_queue_save
     when remaining_input == ["queue","print"]  then outstream.puts messages.help_queue_print
     end
-
-    def 
-
-    end
   end
 end

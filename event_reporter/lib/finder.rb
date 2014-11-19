@@ -16,8 +16,6 @@ class Finder
     attribute = remaining_input.delete_at(0)
     criteria = remaining_input.join(" ")
     @results = find(attribute, criteria)
-    puts results
-    puts results.count
   end
 
   def find(attribute, criteria)
