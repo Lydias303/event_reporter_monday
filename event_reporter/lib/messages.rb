@@ -1,11 +1,26 @@
 class Messages
 
   def help
-    "Hey Im a help method!"
+    "Please choose from the following options:
+    help find
+    help load
+    help queue
+    help queue count
+    help queue clear
+    help queue save
+    help queue print"
   end
 
   def intro_message
-    "Welcome to Entry Repository. Please enter your first commmand."
+    "Welcome to Entry Repository."
+  end
+
+  def next_command
+    "Enter your command.\n> "
+  end
+
+  def load_message(file_name)
+    "File '#{file_name}' has been loaded."
   end
 
   def exit

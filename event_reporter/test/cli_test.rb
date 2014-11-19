@@ -1,3 +1,6 @@
+
+require 'simplecov'
+SimpleCov.start
 require_relative 'test_helper'
 require 'cli'
 
@@ -20,7 +23,7 @@ class CLITest < Minitest::Test
   end
 
 def test_user_can_use_queue
-  cli = CLI.new (nil,nil)
+  cli = CLI.new(nil,nil)
   cli.stub :command, 'queue' do
     assert cli.queue?
   end

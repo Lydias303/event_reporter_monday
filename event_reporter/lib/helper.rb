@@ -4,44 +4,28 @@ require_relative 'cli'
 
 class Helper
 
-  attr_reader :file_name, :remaining_input, :messages, :outstream, :instream
+  attr_reader :file_name, :remaining_input, :messages, :outstream, :instream, :help
 
   def initialize(instream, outstream)
     @instream = instream
     @outstream = outstream
     @messages = Messages.new
-    # @remaining_input
   end
 
   def process_help(remaining_input)
-    if remaining_input == []
-      outstream.puts messages.help
-    elsif remaining_input == ["find"]
-      outstream.puts messages.help_find
-    elsif remaining_input == ["search"]
-      outstream.puts messages.help_search
-    elsif remaining_input ==["queue"]
-      outstream.puts messages.help_queue
-    elsif remaining_input ==["queue","clear"]
-      outstream.puts messages.help_queue_clear
-    elsif remaining_input ==["queue","count"]
-      outstream.puts messages.help_queue_count
-    elsif remaining_input ==["queue","save"]
-      outstream.puts messages.help_queue_save
-    elsif remaining_input ==["queue","print"]
-      outstream.puts messages.help_queue_print
+    case
+    when remaining_input == []                 then outstream.puts messages.help
+    when remaining_input == ["find"]           then outstream.puts messages.help_find
+    when remaining_input == ["search"]         then outstream.puts messages.help_search
+    when remaining_input == ["queue"]          then outstream.puts messages.help_queue
+    when remaining_input == ["queue","clear"]  then outstream.puts messages.help_queue_clear
+    when remaining_input == ["queue","count"]  then outstream.puts messages.help_queue_count
+    when remaining_input == ["queue","save"]   then outstream.puts messages.help_queue_save
+    when remaining_input == ["queue","print"]  then outstream.puts messages.help_queue_print
+    end
+
+    def 
+
     end
   end
 end
-  # def self.process_help(@user_input)
-  #   @user_input = "help" if @remaining_input == []
-  #   #  then outstream puts message.queue
-  #   # case @remaining_input[0]
-  #   #   when 'clear' then outstream.puts message.queue_clear
-  #   #   when 'print' then outstream.puts message.queue_print
-  #   #   when 'save'  then outstream.puts message.queue_save
-  #   #   when 'count' then outstream.puts message.queue_count
-  #   #   end
-  #   # when 'find' then outstream.puts message.find_help
-  #   end
-  # end
